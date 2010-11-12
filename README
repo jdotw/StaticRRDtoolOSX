@@ -4,6 +4,18 @@ The binaries are built for i386 architecture only, with Mac OS X 10.5 set as the
 
 Some minor font and pango configuration is installed into /usr/local/etc but all other libraries are built as static libraries, linked against statically and then removed after the build process. This leaves you with a set of RRDtool binaries that are not dependent on any non-system .dylib library. 
 
+The resulting rrdtool binary is linked as follows:
+
+$ otool -L ~/rrdtool 
+/Users/jwilson/rrdtool:
+	/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 111.1.4)
+	/usr/lib/libz.1.dylib (compatibility version 1.0.0, current version 1.2.3)
+	/System/Library/Frameworks/Carbon.framework/Versions/A/Carbon (compatibility version 2.0.0, current version 136.0.0)
+	/usr/lib/libgcc_s.1.dylib (compatibility version 1.0.0, current version 1.0.0)
+	/System/Library/Frameworks/CoreServices.framework/Versions/A/CoreServices (compatibility version 1.0.0, current version 32.0.0)
+	/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation (compatibility version 150.0.0, current version 476.19.0)
+	/System/Library/Frameworks/ApplicationServices.framework/Versions/A/ApplicationServices (compatibility version 1.0.0, current version 34.0.0)
+
 All library dependencies are included in their original form as separate .tar.gz to ensure compatibility.
 
 Xcode is required to build the binaries on Mac OS X. 
