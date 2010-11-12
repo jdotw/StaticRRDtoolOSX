@@ -1,0 +1,14 @@
+This is a self-contained build environment that creates a statically linked set of RRDtool 1.4 binaries (rrdtool, rrdupdate and rrdcached).
+
+The binaries are built for i386 architecture only, with Mac OS X 10.5 set as the Deployment Target. 
+
+Some minor font and pango configuration is installed into /usr/local/etc but all other libraries are built as static libraries, linked against statically and then removed after the build process. This leaves you with a set of RRDtool binaries that are not dependent on any non-system .dylib library. 
+
+All library dependencies are included in their original form as separate .tar.gz to ensure compatibility.
+
+Xcode is required to build the binaries on Mac OS X. 
+
+This build environment has been tested under Mac OS X 10.6.5 (Snow Leopard) using Xcode 3.2.5
+
+James Wilson
+scotchandcode.com
