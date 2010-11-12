@@ -1,5 +1,16 @@
 #!/bin/sh
 
+echo "----------------------------------------------------------------------"
+echo "NOTE: This script does use 'sudo make install' to perform install"
+echo "      steps that need authentication. You will be prompted to"
+echo "      enter your password during the build"
+echo ""
+echo "      The only thing that is installed outside of this self-contained"
+echo "      build are some config files needed by fontconfig and pango. "
+echo "      These will go into /usr/local/etc"
+echo "----------------------------------------------------------------------"
+sleep 4
+
 PKGCONFIG=pkg-config-0.25
 LIBICONV=libiconv-1.13.1
 LIBPNG=libpng-1.4.4
@@ -44,7 +55,7 @@ CXXFLAGS=$CFLAGS \
 LDFLAGS=$LDFLAGS \
 PKG_CONFIG=$PKG_CONFIG \
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH \
-./configure $CONFIGURE_FLAGS && make && sudo make install
+./configure $CONFIGURE_FLAGS && make && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -59,7 +70,7 @@ CXXFLAGS=$CFLAGS \
 LDFLAGS=$LDFLAGS \
 PKG_CONFIG=$PKG_CONFIG \
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH \
-./configure $CONFIGURE_FLAGS && make && sudo make install
+./configure $CONFIGURE_FLAGS && make && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -74,7 +85,7 @@ CXXFLAGS=$CFLAGS \
 LDFLAGS=$LDFLAGS \
 PKG_CONFIG=$PKG_CONFIG \
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH \
-./configure $CONFIGURE_FLAGS && make && sudo make install
+./configure $CONFIGURE_FLAGS && make && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -89,7 +100,7 @@ CXXFLAGS=$CFLAGS \
 LDFLAGS=$LDFLAGS \
 PKG_CONFIG=$PKG_CONFIG \
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH \
-./configure $CONFIGURE_FLAGS && make && sudo make install
+./configure $CONFIGURE_FLAGS && make && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -104,7 +115,7 @@ CXXFLAGS=$CFLAGS \
 LDFLAGS=$LDFLAGS \
 PKG_CONFIG=$PKG_CONFIG \
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH \
-./configure --prefix=$STAGE --enable-static && make && sudo make install
+./configure --prefix=$STAGE --enable-static && make && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -119,7 +130,7 @@ CXXFLAGS=$CFLAGS \
 LDFLAGS=$LDFLAGS \
 PKG_CONFIG=$PKG_CONFIG \
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH \
-./configure $CONFIGURE_FLAGS --with-add-fonts=/System/Library/Fonts --with-freetype-config=$STAGE/bin/freetype-config && make && sudo make install
+./configure $CONFIGURE_FLAGS --with-add-fonts=/System/Library/Fonts --with-freetype-config=$STAGE/bin/freetype-config && make && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -142,7 +153,7 @@ sed -i '' -e "s/DEFAULT_INCLUDES \=/DEFAULT_INCLUDES \= -I..\/..\/stage\/include
 if [ $? -ne 0 ]; then
   exit 1
 fi
-make && sudo make install
+make && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -157,7 +168,7 @@ CXXFLAGS=$CFLAGS \
 LDFLAGS=$LDFLAGS \
 PKG_CONFIG=$PKG_CONFIG \
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH \
-./configure $CONFIGURE_FLAGS --enable-static --enable-xlib=no --enable-xlib-render=no --enable-win32=no && make && sudo make install
+./configure $CONFIGURE_FLAGS --enable-static --enable-xlib=no --enable-xlib-render=no --enable-win32=no && make && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -172,7 +183,7 @@ CXXFLAGS=$CFLAGS \
 LDFLAGS=$LDFLAGS \
 PKG_CONFIG=$PKG_CONFIG \
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH \
-./configure $CONFIGURE_FLAGS && make && sudo make install
+./configure $CONFIGURE_FLAGS && make && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -187,7 +198,7 @@ CXXFLAGS=$CFLAGS \
 LDFLAGS=$LDFLAGS \
 PKG_CONFIG=$PKG_CONFIG \
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH \
-./configure $CONFIGURE_FLAGS && make && sudo make install
+./configure $CONFIGURE_FLAGS && make && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -202,7 +213,7 @@ CXXFLAGS=$CFLAGS \
 LDFLAGS=$LDFLAGS \
 PKG_CONFIG=$PKG_CONFIG \
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH \
-./configure $CONFIGURE_FLAGS && make && sudo make install
+./configure $CONFIGURE_FLAGS && make && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -217,7 +228,7 @@ CXXFLAGS=$CFLAGS \
 LDFLAGS=$LDFLAGS \
 PKG_CONFIG=$PKG_CONFIG \
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH \
-./configure $CONFIGURE_FLAGS && make && sudo make install
+./configure $CONFIGURE_FLAGS && make && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -233,7 +244,7 @@ CXXFLAGS=$CFLAGS \
 LDFLAGS=$LDFLAGS \
 PKG_CONFIG=$PKG_CONFIG \
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH \
-./configure $CONFIGURE_FLAGS --with-dynamic-modules=no --with-included-modules=basic-fc --enable-static --without-x && make && sudo make install
+./configure $CONFIGURE_FLAGS --with-dynamic-modules=no --with-included-modules=basic-fc --enable-static --without-x && make && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -250,7 +261,7 @@ PKG_CONFIG=$PKG_CONFIG \
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH \
 ./configure $CONFIGURE_FLAGS --disable-rrdcgi --enable-static-programs \
   --disable-libdbi --disable-perl --disable-ruby --disable-lua --disable-tcl\
-  PKGCONFIG=$PKG_CONFIG && make && sudo make install
+  PKGCONFIG=$PKG_CONFIG && make && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -264,7 +275,9 @@ rm -rf $RRDTOOL
 rm -rf result
 mkdir -p result
 cp $STAGE/bin/rrd* result
-rm -rf $STAGE
+
+echo "Cleaning up the staging area, you may be asked for your password."
+sudo rm -rf $STAGE
 
 echo "----------------------------------------------------------------------"
 echo "The static build of RRDtool has completed and the rrdtool, rrdupdate"
