@@ -1,0 +1,13 @@
+Source: lcrrdtool
+Section: net
+Priority: extra
+Maintainer: James Wilson <jwilson@lithiumcorp.com>
+Build-Depends: debhelper (>= 6), autotools-dev
+Standards-Version: 3.7.3
+Homepage: http://lithium5.com
+
+Package: lcrrdtool
+Architecture: any
+Depends: 
+Description: Static RRDtool for Lithium Core
+  A static build of RRDtool (lcrrd*) for Lithium Core
