@@ -30,11 +30,11 @@ STAGE=$PWD/stage
 
 PKG_CONFIG=$STAGE/bin/pkg-config
 PKG_CONFIG_PATH=$STAGE/lib/pkgconfig  
-PATH=$PATH:$STAGE/bin
-CFLAGS="-mmacosx-version-min=10.5 -isysroot /Developer/SDKs/MacOSX10.5.sdk -Wl,-search_paths_first -O -arch i386 -I$STAGE/include"
+PATH="/Xcode3/usr/bin:/Xcode3/usr/sbin:$PATH:$STAGE/bin"
+CFLAGS="-mmacosx-version-min=10.5 -isysroot /Xcode3/SDKs/MacOSX10.5.sdk -Wl,-search_paths_first -O -arch i386 -I$STAGE/include"
 LDFLAGS="-L$STAGE/lib -arch i386" 
 
-CONFIGURE_FLAGS="--disable-dependency-tracking --prefix=$STAGE --enable-static --sysconfdir=/usr/local/etc"
+CONFIGURE_FLAGS="--disable-dependency-tracking --prefix=$STAGE --enable-static --sysconfdir=/usr/local/etc --localstatedir=/var"
 
 #
 # Staging
