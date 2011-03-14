@@ -8,7 +8,29 @@ echo ""
 echo "      The only thing that is installed outside of this self-contained"
 echo "      build are some config files needed by fontconfig and pango. "
 echo "      These will go into /usr/local/etc"
+echo ""      
+echo "      The location of these files can be changed by supplying an"
+echo "      alternative path to this build script as:"
+echo ""
+echo "      ./build.sh /other/path"
+echo ""
+
+if [ $1 ]; then
+  SYSCONFDIR=$1
+  echo "      Using specified sysconf dir $SYSCONFDIR"
+else
+  SYSCONFDIR="/usr/local/etc"
+  echo "      Using default sysconf dir $SYSCONFDIR"
+fi
+
+# Perform a special build if Lithium is present
+if [ -e "/Library/Lithium/LithiumCore.app" ]; then
+  SYSCONFDIR="/Library/Lithium/LithiumCore.app/Contents/Frameworks/LithiumCore.framework/Resources"
+  echo "      Overriding sysconf dir to $SYSCONFDIR"
+fi
+
 echo "----------------------------------------------------------------------"
+
 sleep 4
 
 PKGCONFIG=pkg-config-0.25
@@ -34,7 +56,7 @@ PATH="/Xcode3/usr/bin:/Xcode3/usr/sbin:$PATH:$STAGE/bin"
 CFLAGS="-mmacosx-version-min=10.5 -isysroot /Xcode3/SDKs/MacOSX10.5.sdk -Wl,-search_paths_first -O -arch i386 -I$STAGE/include"
 LDFLAGS="-L$STAGE/lib -arch i386" 
 
-CONFIGURE_FLAGS="--disable-dependency-tracking --prefix=$STAGE --enable-static --sysconfdir=/usr/local/etc --localstatedir=/var"
+CONFIGURE_FLAGS="--disable-dependency-tracking --prefix=$STAGE --enable-static --sysconfdir=$SYSCONFDIR --localstatedir=/var"
 
 #
 # Staging
@@ -277,7 +299,7 @@ mkdir -p result
 cp $STAGE/bin/rrd* result
 
 echo "Cleaning up the staging area, you may be asked for your password."
-sudo rm -rf $STAGE
+#sudo rm -rf $STAGE
 
 echo "----------------------------------------------------------------------"
 echo "The static build of RRDtool has completed and the rrdtool, rrdupdate"
