@@ -33,20 +33,20 @@ echo "----------------------------------------------------------------------"
 
 sleep 4
 
-PKGCONFIG=pkg-config-0.25
-LIBICONV=libiconv-1.13.1
-LIBPNG=libpng-1.4.4
+PANGO=pango-1.28.3
+FREETYPE=freetype-2.4.3
 PIXMAN=pixman-0.19.6
+PKGCONFIG=pkg-config-0.25
+LIBXML=libxml2-2.7.7
+GLIB=glib-2.26.0
+CAIRO=cairo-1.10.0
+LIBPNG=libpng-1.4.4
+LIBICONV=libiconv-1.13.1
 FONTCONFIG=fontconfig-2.8.0
 POPPLER=poppler-0.14.4
-CAIRO=cairo-1.10.0
 EXPAT=expat-2.0.1
 GETTEXT=gettext-0.18.1.1
-GLIB=glib-2.26.0
-PANGO=pango-1.28.3
-RRDTOOL=rrdtool-1.4.4
-LIBXML=libxml2-2.7.7
-FREETYPE=freetype-2.4.3
+RRDTOOL=rrdtool-1.4.5
 
 STAGE=$PWD/stage
 
@@ -77,7 +77,7 @@ CXXFLAGS=$CFLAGS \
 LDFLAGS=$LDFLAGS \
 PKG_CONFIG=$PKG_CONFIG \
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH \
-./configure $CONFIGURE_FLAGS && make && echo "Using sudo to install, you may be asked for your password" && sudo make install
+./configure $CONFIGURE_FLAGS && make -j`sysctl -n hw.ncpu` && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -92,7 +92,7 @@ CXXFLAGS=$CFLAGS \
 LDFLAGS=$LDFLAGS \
 PKG_CONFIG=$PKG_CONFIG \
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH \
-./configure $CONFIGURE_FLAGS && make && echo "Using sudo to install, you may be asked for your password" && sudo make install
+./configure $CONFIGURE_FLAGS && make -j`sysctl -n hw.ncpu` && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -107,7 +107,7 @@ CXXFLAGS=$CFLAGS \
 LDFLAGS=$LDFLAGS \
 PKG_CONFIG=$PKG_CONFIG \
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH \
-./configure $CONFIGURE_FLAGS && make && echo "Using sudo to install, you may be asked for your password" && sudo make install
+./configure $CONFIGURE_FLAGS && make -j`sysctl -n hw.ncpu` && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -122,7 +122,7 @@ CXXFLAGS=$CFLAGS \
 LDFLAGS=$LDFLAGS \
 PKG_CONFIG=$PKG_CONFIG \
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH \
-./configure $CONFIGURE_FLAGS && make && echo "Using sudo to install, you may be asked for your password" && sudo make install
+./configure $CONFIGURE_FLAGS && make -j`sysctl -n hw.ncpu` && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -137,7 +137,7 @@ CXXFLAGS=$CFLAGS \
 LDFLAGS=$LDFLAGS \
 PKG_CONFIG=$PKG_CONFIG \
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH \
-./configure --prefix=$STAGE --enable-static && make && echo "Using sudo to install, you may be asked for your password" && sudo make install
+./configure --prefix=$STAGE --enable-static && make -j`sysctl -n hw.ncpu` && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -152,7 +152,7 @@ CXXFLAGS=$CFLAGS \
 LDFLAGS=$LDFLAGS \
 PKG_CONFIG=$PKG_CONFIG \
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH \
-./configure $CONFIGURE_FLAGS --with-add-fonts=/System/Library/Fonts --with-freetype-config=$STAGE/bin/freetype-config && make && echo "Using sudo to install, you may be asked for your password" && sudo make install
+./configure $CONFIGURE_FLAGS --with-add-fonts=/System/Library/Fonts --with-freetype-config=$STAGE/bin/freetype-config && make -j`sysctl -n hw.ncpu` && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -175,7 +175,7 @@ sed -i '' -e "s/DEFAULT_INCLUDES \=/DEFAULT_INCLUDES \= -I..\/..\/stage\/include
 if [ $? -ne 0 ]; then
   exit 1
 fi
-make && echo "Using sudo to install, you may be asked for your password" && sudo make install
+make -j`sysctl -n hw.ncpu` && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -190,7 +190,7 @@ CXXFLAGS=$CFLAGS \
 LDFLAGS=$LDFLAGS \
 PKG_CONFIG=$PKG_CONFIG \
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH \
-./configure $CONFIGURE_FLAGS --enable-static --enable-xlib=no --enable-xlib-render=no --enable-win32=no && make && echo "Using sudo to install, you may be asked for your password" && sudo make install
+./configure $CONFIGURE_FLAGS --enable-static --enable-xlib=no --enable-xlib-render=no --enable-win32=no && make -j`sysctl -n hw.ncpu` && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -205,7 +205,7 @@ CXXFLAGS=$CFLAGS \
 LDFLAGS=$LDFLAGS \
 PKG_CONFIG=$PKG_CONFIG \
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH \
-./configure $CONFIGURE_FLAGS && make && echo "Using sudo to install, you may be asked for your password" && sudo make install
+./configure $CONFIGURE_FLAGS && make -j`sysctl -n hw.ncpu` && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -220,7 +220,7 @@ CXXFLAGS=$CFLAGS \
 LDFLAGS=$LDFLAGS \
 PKG_CONFIG=$PKG_CONFIG \
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH \
-./configure $CONFIGURE_FLAGS && make && echo "Using sudo to install, you may be asked for your password" && sudo make install
+./configure $CONFIGURE_FLAGS && make -j`sysctl -n hw.ncpu` && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -235,7 +235,7 @@ CXXFLAGS=$CFLAGS \
 LDFLAGS=$LDFLAGS \
 PKG_CONFIG=$PKG_CONFIG \
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH \
-./configure $CONFIGURE_FLAGS && make && echo "Using sudo to install, you may be asked for your password" && sudo make install
+./configure $CONFIGURE_FLAGS && make -j`sysctl -n hw.ncpu` && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -250,7 +250,7 @@ CXXFLAGS=$CFLAGS \
 LDFLAGS=$LDFLAGS \
 PKG_CONFIG=$PKG_CONFIG \
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH \
-./configure $CONFIGURE_FLAGS && make && echo "Using sudo to install, you may be asked for your password" && sudo make install
+./configure $CONFIGURE_FLAGS && make -j`sysctl -n hw.ncpu` && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -266,7 +266,7 @@ CXXFLAGS=$CFLAGS \
 LDFLAGS=$LDFLAGS \
 PKG_CONFIG=$PKG_CONFIG \
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH \
-./configure $CONFIGURE_FLAGS --with-dynamic-modules=no --with-included-modules=basic-fc --enable-static --without-x && make && echo "Using sudo to install, you may be asked for your password" && sudo make install
+./configure $CONFIGURE_FLAGS --with-dynamic-modules=no --with-included-modules=basic-fc --enable-static --without-x && make -j`sysctl -n hw.ncpu` && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
@@ -283,7 +283,7 @@ PKG_CONFIG=$PKG_CONFIG \
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH \
 ./configure $CONFIGURE_FLAGS --disable-rrdcgi --enable-static-programs \
   --disable-libdbi --disable-perl --disable-ruby --disable-lua --disable-tcl\
-  PKGCONFIG=$PKG_CONFIG && make && echo "Using sudo to install, you may be asked for your password" && sudo make install
+  PKGCONFIG=$PKG_CONFIG && make -j`sysctl -n hw.ncpu` && echo "Using sudo to install, you may be asked for your password" && sudo make install
 if [ $? -ne 0 ]; then
   exit 1
 fi
